@@ -8,10 +8,10 @@ export function LegalPage({ title, sections }: { title: string; sections: LegalS
     <>
       <header className="border-b border-line bg-white">
         <div className="container-page flex h-[4.25rem] items-center justify-between">
-          <Link href="/" className="-ml-1 rounded-md p-1" aria-label="Elara Zahnmedizin – zur Startseite">
-            <Logo className="h-10 w-auto" />
+          <Link href="/" className="-ml-1 rounded-md p-1" aria-label="Zahnarzt Olschewski – zur Startseite">
+            <Logo className="h-6 w-auto" />
           </Link>
-          <Link href="/" className="text-sm font-semibold text-navy-800 link-underline">
+          <Link href="/" className="text-sm font-semibold text-charcoal-800 link-underline">
             Zur Startseite
           </Link>
         </div>
@@ -21,7 +21,7 @@ export function LegalPage({ title, sections }: { title: string; sections: LegalS
         <div className="mt-10 space-y-10">
           {sections.map((section) => (
             <section key={section.heading}>
-              <h2 className="text-lg font-extrabold tracking-tight text-navy-900 sm:text-xl">
+              <h2 className="text-lg font-semibold tracking-tight text-charcoal-900 sm:text-xl">
                 {section.heading}
               </h2>
               <div className="mt-3 space-y-3 leading-relaxed text-ink/85">
@@ -54,7 +54,7 @@ export function LegalPage({ title, sections }: { title: string; sections: LegalS
                             href={block.href}
                             target="_blank"
                             rel="noopener"
-                            className="font-semibold break-all text-navy-800 link-underline"
+                            className="font-semibold break-all text-charcoal-800 link-underline"
                           >
                             {block.label ?? block.href}
                           </a>

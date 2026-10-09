@@ -82,7 +82,7 @@ export function Testimonials() {
               onClick={() => step(-1)}
               disabled={!canPrev}
               aria-label="Vorherige Bewertungen"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-navy-800/20 bg-white text-navy-800 transition hover:border-navy-800 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-charcoal-800/20 bg-white text-charcoal-800 transition hover:border-charcoal-800 disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ArrowIcon className="h-5 w-5 rotate-180" />
             </button>
@@ -91,7 +91,7 @@ export function Testimonials() {
               onClick={() => step(1)}
               disabled={!canNext}
               aria-label="Nächste Bewertungen"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-navy-800 text-white transition hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-charcoal-800 text-white transition hover:bg-charcoal-900 disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ArrowIcon className="h-5 w-5" />
             </button>
@@ -119,7 +119,7 @@ export function Testimonials() {
                   „{t.quote}“
                 </blockquote>
                 <figcaption className="mt-6 border-t border-line pt-4 text-sm">
-                  <span className="font-bold text-navy-900">{t.name}</span>
+                  <span className="font-bold text-charcoal-900">{t.name}</span>
                   {t.source && <span className="text-muted"> · {t.source}</span>}
                 </figcaption>
               </figure>
@@ -139,7 +139,7 @@ export function Testimonials() {
             >
               <span
                 className={`block h-2 rounded-full transition-all duration-300 ${
-                  i === active ? "w-6 bg-navy-800" : "w-2 bg-navy-800/20 group-hover:bg-navy-800/40"
+                  i === active ? "w-6 bg-charcoal-800" : "w-2 bg-charcoal-800/20 group-hover:bg-charcoal-800/40"
                 }`}
               />
             </button>
@@ -178,7 +178,7 @@ function Stars({ rating }: { rating: number }) {
 
 function QuoteMark() {
   return (
-    <svg viewBox="0 0 32 24" aria-hidden="true" className="h-6 w-8 text-teal-500">
+    <svg viewBox="0 0 32 24" aria-hidden="true" className="h-6 w-8 text-steel-500">
       <path
         fill="currentColor"
         d="M0 24V14.4C0 6.2 4.4 1.4 13.2 0l1.4 3.6C9.8 4.8 7.4 7.4 7.2 11.2H13V24H0Zm18.6 0V14.4C18.6 6.2 23 1.4 31.8 0l1.4 3.6c-4.8 1.2-7.2 3.8-7.4 7.6h5.8V24H18.6Z"

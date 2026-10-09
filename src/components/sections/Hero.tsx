@@ -5,7 +5,7 @@ import { CheckIcon, ClockIcon } from "../Icons";
 import { Rich } from "../Rich";
 
 export function Hero() {
-  const img = images.consultation;
+  const img = images.hero;
   return (
     <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden bg-white">
       <div className="container-page relative grid items-center gap-10 pt-8 pb-16 sm:pt-12 lg:grid-cols-12 lg:gap-12 lg:pt-16 lg:pb-24">
@@ -26,7 +26,7 @@ export function Hero() {
           <ul className="mt-9 grid gap-x-6 gap-y-3 border-t border-line pt-6 text-[0.93rem] font-medium text-ink sm:grid-cols-3 sm:gap-x-4 lg:grid-cols-1 xl:grid-cols-3">
             {hero.trustPoints.map((point) => (
               <li key={point} className="flex items-start gap-2.5">
-                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-500/15 text-teal-700">
+                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-steel-500/15 text-steel-700">
                   <CheckIcon className="h-3.5 w-3.5" strokeWidth={2.4} />
                 </span>
                 {point}
@@ -49,14 +49,14 @@ export function Hero() {
             />
           </div>
           <div className="absolute -bottom-6 left-4 max-w-[17rem] rounded-2xl border border-white/70 bg-white/95 p-4 shadow-soft backdrop-blur sm:left-6 sm:p-5 lg:-left-8">
-            <p className="flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.14em] text-teal-700 uppercase">
+            <p className="flex items-center gap-2 text-[0.72rem] font-bold tracking-[0.14em] text-steel-700 uppercase">
               <ClockIcon className="h-4 w-4" /> Öffnungszeiten
             </p>
             <dl className="mt-2.5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1 text-sm">
               {practice.openingHours.map((row) => (
                 <div key={row.label} className="contents">
                   <dt className="text-muted">{row.short}</dt>
-                  <dd className="font-semibold text-navy-900">{row.hours}</dd>
+                  <dd className="font-semibold text-charcoal-900">{row.hours}</dd>
                 </div>
               ))}
             </dl>

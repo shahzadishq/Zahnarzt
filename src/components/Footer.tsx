@@ -5,13 +5,13 @@ import { ConsentSettingsButton } from "./ConsentManager";
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-navy-950 pt-16 pb-28 text-white/75 lg:pb-12">
+    <footer className="bg-charcoal-950 pt-16 pb-28 text-white/75 lg:pb-12">
       <div className="container-page">
         <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo variant="light" className="h-11 w-auto" />
+            <Logo variant="light" className="h-6 w-auto" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed">
-              Ihre Zahnarztpraxis in Meitingen – persönlich und verständlich.
+              Die Zahnarztpraxis für Jung und Alt – im Herzen von Troisdorf. Ehrlich, herzlich, kompetent.
             </p>
           </div>
 
@@ -42,7 +42,7 @@ export function Footer() {
                   rel="noopener"
                   data-track="directions_click"
                   data-track-location="footer"
-                  className="font-semibold text-teal-300 hover:text-white"
+                  className="font-semibold text-steel-300 hover:text-white"
                 >
                   Route planen →<span className="sr-only"> (öffnet Google Maps in neuem Tab)</span>
                 </a>
@@ -55,6 +55,14 @@ export function Footer() {
               <p>
                 <a href={`mailto:${practice.email}`} data-track-location="footer" className="break-all hover:text-white">
                   {practice.email}
+                </a>
+              </p>
+              <p className="flex flex-wrap gap-x-4 gap-y-1">
+                <a href={practice.anamnesisForm} target="_blank" rel="noopener" className="hover:text-white">
+                  Anamnesebogen (PDF)
+                </a>
+                <a href={practice.instagram} target="_blank" rel="noopener" className="hover:text-white">
+                  Instagram
                 </a>
               </p>
             </address>

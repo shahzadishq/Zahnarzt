@@ -1,14 +1,12 @@
 /**
  * Impressum and Datenschutz content.
  *
- * Source: landsberger-medienagentur.de/impressum and /datenschutz (supplied by
- * the client, October 2026). Provider changed to Elara Zahnmedizin with the
- * practice address and contact details from site.ts; TMG references updated to
- * DDG; the agency's own "Berufsbezeichnung" description was removed. The
- * Datenschutz text follows the source, but sections describing the agency's own
- * website (IONOS hosting, newsletter, social-media embeds) were adapted or left
- * out so the statement matches what this site actually does. Please have both
- * texts legally reviewed before launch.
+ * Impressum: provider and professional details taken from
+ * zahnarzt-olschewski.de/impressum (October 2026), TMG references updated to
+ * DDG. Datenschutz: describes what this site actually does (hosting, enquiry
+ * form, external links to Doctolib, Google Maps and Instagram). Please have
+ * both texts legally reviewed before launch, and update the hosting section
+ * once the final host is chosen.
  */
 
 import { practice } from "./site";
@@ -22,8 +20,7 @@ export type LegalBlock =
 export type LegalSection = { heading: string; blocks: LegalBlock[] };
 
 const provider = [
-  practice.name,
-  "Inhaber: Ioan Meyer",
+  `${practice.name} – ${practice.owner}`,
   practice.address.street,
   `${practice.address.postalCode} ${practice.address.city}`,
   "Deutschland",
@@ -41,7 +38,57 @@ export const impressum: LegalSection[] = [
           `E-Mail: ${practice.email}`,
         ],
       },
-      { type: "p", text: "Vertreten durch: Ioan Meyer (Inhaber)" },
+    ],
+  },
+  {
+    heading: "Berufsbezeichnung und berufsrechtliche Regelungen",
+    blocks: [
+      {
+        type: "p",
+        text: "Berufsbezeichnung: Zahnarzt (verliehen in der Bundesrepublik Deutschland)",
+      },
+      {
+        type: "lines",
+        lines: [
+          "Zuständige Kammer:",
+          "Zahnärztekammer Nordrhein",
+          "Emanuel-Leutze-Straße 8",
+          "40547 Düsseldorf",
+        ],
+      },
+      { type: "link", href: "https://www.zaek-nr.de/" },
+      {
+        type: "lines",
+        lines: [
+          "Zuständige Aufsichtsbehörde:",
+          "Kassenzahnärztliche Vereinigung Nordrhein",
+          "Lindemannstraße 34–42",
+          "40237 Düsseldorf",
+          "Telefon: 0211 96840",
+        ],
+      },
+      { type: "link", href: "https://www.kzvnr.de/" },
+      { type: "p", text: "Es gelten folgende berufsrechtliche Regelungen:" },
+      {
+        type: "list",
+        items: [
+          "Zahnheilkundegesetz (ZHG)",
+          "Gebührenordnung für Zahnärzte (GOZ)",
+          "Heilberufsgesetz NRW",
+          "Berufsordnung und Weiterbildungsordnung der Zahnärztekammer Nordrhein",
+        ],
+      },
+      { type: "p", text: "Die Regelungen sind auf der Website der Zahnärztekammer Nordrhein einsehbar." },
+    ],
+  },
+  {
+    heading: "Berufshaftpflichtversicherung",
+    blocks: [
+      {
+        type: "lines",
+        lines: ["Alte Leipziger Versicherung AG", "Alte Leipziger-Platz 1", "61440 Oberursel"],
+      },
+      { type: "p", text: "Geltungsraum: Deutschland" },
     ],
   },
   {
@@ -98,24 +145,11 @@ export const impressum: LegalSection[] = [
     ],
   },
   {
-    heading: "Hinweis zum Einsatz von Künstlicher Intelligenz (KI)",
-    blocks: [
-      {
-        type: "p",
-        text: "Auf dieser Website können teilweise mit Unterstützung künstlicher Intelligenz (KI) erstellte oder überarbeitete Texte, Bilder und Grafiken verwendet werden. Sämtliche Inhalte werden vor der Veröffentlichung sorgfältig geprüft und redaktionell überarbeitet. Die dargestellten Inhalte dienen der Information und Veranschaulichung und stellen, sofern nicht ausdrücklich anders angegeben, keine verbindlichen Leistungszusagen oder realen Arbeitsergebnisse dar.",
-      },
-      {
-        type: "p",
-        text: "Sollten trotz sorgfältiger Prüfung Rechte Dritter verletzt werden, bitten wir um einen entsprechenden Hinweis. Die betroffenen Inhalte werden nach Prüfung selbstverständlich umgehend entfernt oder angepasst.",
-      },
-    ],
-  },
-  {
     heading: "Bildnachweise",
     blocks: [
       {
         type: "p",
-        text: "Verwendete Bilder und Grafiken stammen entweder aus eigenen Quellen oder aus lizenzierten Bilddatenbanken. Sofern erforderlich, werden entsprechende Urheberangaben direkt bei den jeweiligen Inhalten gemacht.",
+        text: "Alle Fotos zeigen unsere Praxis und unser Team und stammen aus einem eigenen Fotoshooting der Zahnarztpraxis Olschewski.",
       },
     ],
   },
@@ -194,6 +228,10 @@ export const datenschutz: LegalSection[] = [
       {
         type: "p",
         text: "Über den Link „Route planen“ gelangen Sie zu Google Maps (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Daten werden erst dann an Google übertragen, wenn Sie diesen Link anklicken.",
+      },
+      {
+        type: "p",
+        text: "Für die Online-Terminbuchung verlinken wir auf Doctolib (Doctolib GmbH, Mehringdamm 51, 10961 Berlin). Erst wenn Sie den Link anklicken, öffnet sich die Website von Doctolib; dort gilt deren Datenschutzerklärung. Gleiches gilt für den Link zu unserem Instagram-Profil (Meta Platforms Ireland Limited, Merrion Road, Dublin 4, Irland).",
       },
     ],
   },

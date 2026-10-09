@@ -1,7 +1,7 @@
 /**
  * Minimal, privacy-conscious analytics hooks.
  *
- * - Every event is dispatched as a DOM CustomEvent ("elara:track") so any
+ * - Every event is dispatched as a DOM CustomEvent ("olschewski:track") so any
  *   integration can listen without code changes.
  * - Events are pushed to window.dataLayer (Google Tag Manager) ONLY after the
  *   visitor has granted consent; GTM itself is only loaded after consent.
@@ -18,9 +18,9 @@ export type TrackEventName =
 
 export type TrackParams = Record<string, string | number | boolean | undefined>;
 
-const CONSENT_KEY = "elara-consent-v1";
-export const CONSENT_EVENT = "elara:consent-change";
-export const OPEN_CONSENT_EVENT = "elara:open-consent";
+const CONSENT_KEY = "olschewski-consent-v1";
+export const CONSENT_EVENT = "olschewski:consent-change";
+export const OPEN_CONSENT_EVENT = "olschewski:open-consent";
 
 export type ConsentState = "granted" | "denied" | null;
 
@@ -51,7 +51,7 @@ declare global {
 export function track(event: TrackEventName, params: TrackParams = {}) {
   if (typeof window === "undefined") return;
   const payload = { event, ...params };
-  window.dispatchEvent(new CustomEvent("elara:track", { detail: payload }));
+  window.dispatchEvent(new CustomEvent("olschewski:track", { detail: payload }));
   if (readConsent() === "granted") {
     (window.dataLayer ??= []).push(payload);
   }

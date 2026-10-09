@@ -1,17 +1,18 @@
 /**
- * Central content & configuration for the Elara Zahnmedizin landing page.
+ * Central content & configuration for the Zahnarzt Olschewski landing page.
  *
  * Everything visitor-facing (practice details, services, FAQs, image paths,
  * integration settings) lives here so it can be reviewed and updated in one place.
  *
- * `confirmed: false` marks content that was derived from the reference websites
- * or written as a sensible default and still needs sign-off by the practice.
+ * Texts, team, reviews and FAQs are taken from the practice's current website
+ * (zahnarzt-olschewski.de, see docs/brand/). `confirmed: false` marks content
+ * that was newly written or condensed for this site and still needs sign-off.
  * Set NEXT_PUBLIC_REVIEW_MODE=1 to see these items highlighted on the page.
  */
 
 /**
  * Path prefix when the site is served from a sub-path (e.g. GitHub Pages at
- * /elara). Empty for a normal root deployment. Set at build time.
+ * /zahnarzt). Empty for a normal root deployment. Set at build time.
  */
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "";
 
@@ -19,34 +20,35 @@ export const basePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ??
 export const withBase = (path: string) => `${basePath}${path}`;
 
 export const practice = {
-  name: "Elara Zahnmedizin",
-  shortName: "Elara",
-  // Supplied by the client.
+  name: "Zahnarzt Olschewski",
+  shortName: "Olschewski",
+  owner: "Martin Olschewski",
+  // From zahnarzt-olschewski.de (Impressum / Kontakt), October 2026.
   address: {
-    street: "Hauptstraße 56",
-    postalCode: "86405",
-    city: "Meitingen",
+    street: "Pfarrer-Kenntemich-Platz 9",
+    postalCode: "53840",
+    city: "Troisdorf",
     country: "DE",
   },
   phone: {
-    display: "+49 152 342 736 71",
-    href: "tel:+4915234273671",
-    e164: "+4915234273671",
+    display: "02241 74098",
+    href: "tel:+49224174098",
+    e164: "+49224174098",
   },
-  email: "info@landsberger-medienagentur.de",
+  email: "info@zahnarzt-olschewski.de",
+  instagram: "https://www.instagram.com/zahnarzt.troisdorf/",
+  /** Medical history form patients can fill in before their first visit. */
+  anamnesisForm: withBase("/anamnesebogen-olschewski-troisdorf.pdf"),
   openingHours: [
-    { label: "Montag – Freitag", short: "Mo–Fr", hours: "9:00 – 17:00 Uhr" },
-    { label: "Samstag", short: "Sa", hours: "9:00 – 12:00 Uhr" },
-    { label: "Sonntag", short: "So", hours: "geschlossen" },
+    { label: "Montag, Dienstag, Donnerstag", short: "Mo, Di, Do", hours: "8:00 – 18:00 Uhr" },
+    { label: "Mittwoch", short: "Mi", hours: "8:00 – 16:00 Uhr" },
+    { label: "Freitag", short: "Fr", hours: "8:00 – 14:00 Uhr" },
   ],
   // Machine-readable opening hours for structured data (schema.org).
   openingHoursSpec: [
-    {
-      days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-    { days: ["Saturday"], opens: "09:00", closes: "12:00" },
+    { days: ["Monday", "Tuesday", "Thursday"], opens: "08:00", closes: "18:00" },
+    { days: ["Wednesday"], opens: "08:00", closes: "16:00" },
+    { days: ["Friday"], opens: "08:00", closes: "14:00" },
   ],
 } as const;
 
@@ -56,10 +58,17 @@ export const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination
 
 /** Integration settings – all optional, read from environment variables. */
 export const integrations = {
-  /** Public site URL, e.g. https://www.elara-zahnmedizin.de – enables canonical + OG URLs. */
+  /** Public site URL, e.g. https://zahnarzt-olschewski.de – enables canonical + OG URLs. */
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || null,
-  /** External online booking URL (e.g. Doctolib). If empty, CTAs go to the enquiry form. */
-  bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL || null,
+  /**
+   * External online booking URL. Defaults to the practice's Doctolib profile;
+   * set NEXT_PUBLIC_BOOKING_URL=none to send all CTAs to the enquiry form instead.
+   */
+  bookingUrl:
+    process.env.NEXT_PUBLIC_BOOKING_URL === "none"
+      ? null
+      : process.env.NEXT_PUBLIC_BOOKING_URL ||
+        "https://www.doctolib.de/zahnarztpraxis/troisdorf/zahnarzt-olschewski-praxis-in-troisdorf",
   /** Google Tag Manager container ID. Only loaded after consent. */
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || null,
   /**
@@ -92,296 +101,343 @@ export const navigation = [
   { label: "Kontakt", href: "#kontakt" },
 ] as const;
 
+/** Photos from the practice's own shoot (public/images/praxis, see docs/brand/BRAND.md). */
+const praxis = (file: string) => withBase(`/images/praxis/${file}`);
+
 export const images = {
-  consultation: {
-    src: withBase("/images/elara-consultation.webp"),
-    width: 1536,
-    height: 1024,
-    alt: "Ein Zahnarzt von Elara Zahnmedizin bespricht im Behandlungszimmer die nächsten Schritte mit einer Patientin",
+  hero: {
+    src: praxis("troisdorf-zahnarztpraxis-angstpatient.webp"),
+    width: 1600,
+    height: 798,
+    alt: "Die Zahnärzte Martin Olschewski und Konstantinos Arampatzis lächelnd im Behandlungszimmer",
   },
-  teamGroup: {
-    src: withBase("/images/elara-team.webp"),
-    width: 1672,
-    height: 941,
-    alt: "Drei Mitglieder des Praxisteams von Elara Zahnmedizin im Empfangsbereich",
+  intro: {
+    src: praxis("troisdorf-zahnarzt-olschewski-spich.webp"),
+    width: 600,
+    height: 900,
+    alt: "Eine Patientin wird im Behandlungsstuhl freundlich betreut",
   },
-  teamWalking: {
-    src: withBase("/images/feature-team.webp"),
-    width: 1100,
-    height: 1375,
-    alt: "Mitarbeitende von Elara Zahnmedizin im hellen Praxisflur",
+  team: {
+    src: praxis("zahnarzt-troisdorf-spich.webp"),
+    width: 1600,
+    height: 1067,
+    alt: "Zwei Mitarbeiterinnen der Zahnarztpraxis Olschewski besprechen sich im Behandlungszimmer",
   },
   reception: {
-    src: withBase("/images/feature-reception.webp"),
-    width: 1100,
-    height: 1375,
-    alt: "Heller Empfangs- und Wartebereich mit Sesseln und geschwungenem Empfangstresen",
+    src: praxis("zahnarztpraxis-team-troisdorf.webp"),
+    width: 1500,
+    height: 1001,
+    alt: "Mitarbeiterin am Empfang der Praxis beim Telefonieren",
   },
-  xray: {
-    src: withBase("/images/feature-technology.webp"),
-    width: 1100,
-    height: 1375,
-    alt: "Röntgenraum der Praxis mit Blick ins Grüne",
+  desk: {
+    src: praxis("zahnfuellung-zahnarzt-troisdorf.webp"),
+    width: 1200,
+    height: 800,
+    alt: "Zahnarzt Martin Olschewski am Empfangstresen mit einer Patientin",
+  },
+  treatment: {
+    src: praxis("troisdorf-kinderzahnarzt-olschewski.webp"),
+    width: 1600,
+    height: 798,
+    alt: "Zahnarzt im Gespräch mit einem Patienten im Behandlungsstuhl",
   },
 } as const;
 
 export const hero = {
-  eyebrow: "Ihre Zahnarztpraxis in Meitingen",
-  title: "Zahnmedizin in Meitingen\u00a0– *persönlich* und verständlich.",
+  eyebrow: "Ihre Zahnarztpraxis in Troisdorf",
+  title: "Ehrlich, herzlich, *kompetent*.",
   intro:
-    "Bei Elara Zahnmedizin nehmen wir uns Zeit für Ihre Fragen, erklären Befunde in klaren Worten und besprechen jede Behandlung gemeinsam mit Ihnen – von der Vorsorge bis zum Zahnersatz.",
+    "Moderne Zahnmedizin mit dem einzigartigen „Kumpelfaktor“: In unserer Praxis im Herzen von Troisdorf sollen Sie sich von der ersten Sekunde an wie bei Freunden fühlen – von der Vorsorge über die Ästhetik bis zum Zahnersatz aus unserem eigenen Meisterlabor.",
   trustPoints: [
-    "Persönliche Beratung",
-    "Vorsorge bis Zahnersatz",
-    "Termin einfach anfragen",
+    "Angstpatienten willkommen",
+    "Zahnersatz aus eigenem Meisterlabor",
+    "Schnelle Termine, kurze Wartezeiten",
   ],
 };
 
 export const intro = {
   eyebrow: "Die Praxis",
-  title: "Willkommen bei *Elara Zahnmedizin*",
+  title: "Zahnmedizin von *Z bis O*.",
   paragraphs: [
-    "Ein Zahnarztbesuch soll sich gut anfühlen. In unserer hellen, ruhigen Praxis in Meitingen erwartet Sie ein Team, das Ihnen zuhört und sich Zeit für Ihre Anliegen nimmt.",
-    "Wir erklären Befunde in verständlichen Worten, zeigen Ihnen die möglichen Wege auf und entscheiden gemeinsam mit Ihnen, wie es weitergeht – ohne Zeitdruck und ohne Fachchinesisch.",
+    "Wir sind für Sie da – mit Ehrlichkeit, Herzlichkeit und Kompetenz. Mit modernster Technik, langjähriger Erfahrung und einem eingespielten Team sorgen wir für gesunde Zähne, eine optimale Kaufunktion und ein ästhetisch überzeugendes Ergebnis.",
+    "Ihr Besuch beginnt mit einem herzlichen „Hallo“ am Empfang, geht über eine qualifizierte Behandlung und endet mit einem zufriedenen „Auf Wiedersehen“. Denn für uns sind Sie nicht nur Patient, sondern Teil unserer Praxisfamilie.",
   ],
   points: [
-    "Verständliche Erklärungen statt Fachsprache",
-    "Behandlungsschritte, die wir vorab mit Ihnen besprechen",
-    "Vorsorge, Zahnerhaltung und Zahnersatz unter einem Dach",
+    "Komplexe Diagnosen verständlich erklärt",
+    "Schonende, minimalinvasive Methoden und modernste Technik",
+    "Barrierefreie Praxis – für Jung und Alt",
   ],
-  confirmed: false, // approach statements – please confirm wording with the practice
+  confirmed: true,
 };
 
 export type ServiceIcon =
   | "sparkle"
   | "gum"
   | "shield"
+  | "root"
   | "crown"
   | "implant"
-  | "surgery"
-  | "child"
-  | "smile";
+  | "smile"
+  | "sun"
+  | "aligner"
+  | "heart"
+  | "bolt"
+  | "scan";
 
 export type Service = {
   id: string;
   name: string;
   icon: ServiceIcon;
   summary: string;
-  details: string;
   includes?: string[];
-  /** Which reference website(s) list this service – for client review only. */
-  source: ("amedis" | "alldent")[];
+  /** Matching page on the old website – for content reference and redirects. */
+  source: string;
   confirmed: boolean;
 };
 
+// Summaries condensed from the service pages of zahnarzt-olschewski.de.
 export const services: Service[] = [
   {
     id: "prophylaxe",
-    name: "Prophylaxe & professionelle Zahnreinigung",
+    name: "Professionelle Zahnreinigung (GBT)",
     icon: "sparkle",
     summary:
-      "Gründliche Reinigung der Zähne und Zahnzwischenräume – die Grundlage für gesunde Zähne und gesundes Zahnfleisch.",
-    details:
-      "Bei der professionellen Zahnreinigung entfernen wir Beläge und Verfärbungen, die bei der täglichen Pflege schwer zu erreichen sind. Gleichzeitig geben wir Ihnen Tipps, wie Sie Ihre Zahnpflege zu Hause gezielt ergänzen können. Welcher Abstand zwischen zwei Reinigungen für Sie sinnvoll ist, besprechen wir individuell.",
-    source: ["amedis", "alldent"],
-    confirmed: false,
+      "Prophylaxe in jedem Alter – mit der besonders schonenden Guided Biofilm Therapy: schmerzarm, gründlich und auch für Implantate geeignet.",
+    includes: ["Guided Biofilm Therapy", "Prophylaxe für Kinder"],
+    source: "/guided-biofilm-therapy/",
+    confirmed: true,
   },
   {
     id: "parodontitis",
-    name: "Parodontitis-Behandlung",
+    name: "Parodontitis-Therapie",
     icon: "gum",
     summary:
-      "Wenn das Zahnfleisch blutet oder zurückgeht, suchen wir nach der Ursache und besprechen die passende Behandlung.",
-    details:
-      "Parodontitis ist eine Entzündung des Zahnhalteapparats, die oft lange unbemerkt bleibt. Nach einer gründlichen Untersuchung erläutern wir Ihnen den Befund und die möglichen Behandlungsschritte. Eine regelmäßige Nachsorge hilft, das Ergebnis langfristig zu erhalten.",
-    source: ["amedis", "alldent"],
-    confirmed: false,
+      "Zahnfleischbluten, Mundgeruch oder Zahnfleischrückgang? Wir stoppen die Entzündung und erhalten Ihre Zähne langfristig.",
+    source: "/parodontitis-therapie-troisdorf/",
+    confirmed: true,
   },
   {
-    id: "zahnerhaltung",
-    name: "Füllungen & Wurzelbehandlung",
+    id: "fuellungen",
+    name: "Zahnfüllungen & Inlays",
     icon: "shield",
     summary:
-      "Unser Ziel ist, Ihre eigenen Zähne so lange wie möglich zu erhalten – von der Füllung bis zur Wurzelbehandlung.",
-    details:
-      "Kleinere Defekte lassen sich häufig mit einer Füllung versorgen. Ist der Zahnnerv entzündet, kann eine Wurzelbehandlung helfen, den Zahn zu erhalten. Welche Behandlung in Ihrem Fall infrage kommt, klären wir nach der Untersuchung gemeinsam mit Ihnen.",
-    includes: ["Zahnfüllungen", "Wurzelbehandlung"],
-    source: ["amedis", "alldent"],
-    confirmed: false,
+      "Karies minimalinvasiv behandeln – mit Kompositfüllungen in Zahnfarbe oder passgenauen Inlays aus Keramik oder Gold.",
+    includes: ["Komposit", "Keramik-Inlays", "Gold-Inlays"],
+    source: "/zahnfuellung-troisdorf-kariesbehandlung/",
+    confirmed: true,
+  },
+  {
+    id: "endodontie",
+    name: "Wurzelkanalbehandlung",
+    icon: "root",
+    summary:
+      "Moderne Endodontie, um entzündete Zähne schmerzfrei zu retten und vor dem Ziehen zu bewahren.",
+    source: "/wurzelkanalbehandlung-troisdorf-endodontie/",
+    confirmed: true,
   },
   {
     id: "zahnersatz",
-    name: "Zahnersatz",
+    name: "Zahnersatz aus eigenem Meisterlabor",
     icon: "crown",
     summary:
-      "Kronen, Brücken und Prothesen, die Funktion und Aussehen Ihrer Zähne wiederherstellen.",
-    details:
-      "Ob ein einzelner Zahn ersetzt oder eine größere Lücke geschlossen werden soll: Wir stellen Ihnen die verschiedenen Möglichkeiten – festsitzend, herausnehmbar oder implantatgetragen – mit ihren Vor- und Nachteilen vor, damit Sie in Ruhe entscheiden können.",
+      "Kronen, Brücken und Prothesen, geplant und gefertigt von unserer Meisterzahntechnikerin im Haus – kurze Wege, passgenaue Ergebnisse.",
     includes: ["Kronen", "Brücken", "Prothesen"],
-    source: ["amedis", "alldent"],
-    confirmed: false,
+    source: "/zahnersatz-troisdorf-dentallabor/",
+    confirmed: true,
   },
   {
     id: "implantate",
     name: "Implantate",
     icon: "implant",
     summary:
-      "Implantate können fehlende Zähne dauerhaft ersetzen. Ob sie für Sie infrage kommen, klären wir in einer persönlichen Beratung.",
-    details:
-      "Ein Implantat dient als künstliche Zahnwurzel, auf der eine Krone, Brücke oder Prothese befestigt werden kann. Vor einer Implantatbehandlung untersuchen wir die Ausgangssituation sorgfältig und besprechen mit Ihnen Ablauf, Voraussetzungen und Alternativen.",
-    source: ["amedis", "alldent"],
-    confirmed: false,
+      "Feste Zähne mit präziser 3D-Implantologie – ob ein Zahn fehlt, mehrere oder eine ganze Zahnreihe.",
+    source: "/zahnimplantate-troisdorf-implantologie/",
+    confirmed: true,
   },
   {
-    id: "oralchirurgie",
-    name: "Oralchirurgie & Weisheitszähne",
-    icon: "surgery",
-    summary:
-      "Chirurgische Eingriffe im Mundraum, zum Beispiel die Entfernung von Weisheitszähnen – gut vorbereitet und in Ruhe erklärt.",
-    details:
-      "Vor jedem Eingriff besprechen wir mit Ihnen, was geplant ist, wie Sie sich vorbereiten und worauf Sie danach achten sollten. So wissen Sie jederzeit, was Sie erwartet.",
-    source: ["amedis", "alldent"],
-    confirmed: false,
-  },
-  {
-    id: "kinder",
-    name: "Kinderzahnheilkunde",
-    icon: "child",
-    summary:
-      "Ein entspannter Start für kleine Patientinnen und Patienten – mit Geduld und kindgerechten Erklärungen.",
-    details:
-      "Gerade bei den ersten Besuchen ist es uns wichtig, dass Kinder die Zahnarztpraxis in guter Erinnerung behalten. Wir erklären Schritt für Schritt, was passiert, und beziehen Eltern selbstverständlich mit ein.",
-    source: ["amedis"],
-    confirmed: false,
-  },
-  {
-    id: "aesthetik",
-    name: "Ästhetische Zahnmedizin",
+    id: "veneers",
+    name: "Veneers",
     icon: "smile",
     summary:
-      "Zahnaufhellung, Veneers und Aligner – für ein Lächeln, mit dem Sie sich wohlfühlen.",
-    details:
-      "Ob hellere Zähne, kleine Formkorrekturen oder unauffällige Zahnschienen zur Korrektur von Zahnfehlstellungen: In einem Beratungsgespräch mit Untersuchung finden wir heraus, welche Möglichkeiten für Sie sinnvoll sind.",
-    includes: ["Zahnaufhellung (Bleaching)", "Veneers", "Aligner"],
-    source: ["amedis", "alldent"],
-    confirmed: false,
+      "Hauchdünne Verblendschalen aus Hochleistungskeramik korrigieren Form, Farbe und kleine Fehlstellungen – auch als Non-Prep-Veneers.",
+    source: "/veneers-troisdorf-keramikverblendschalen-non-prep-veneer/",
+    confirmed: true,
+  },
+  {
+    id: "bleaching",
+    name: "Bleaching",
+    icon: "sun",
+    summary:
+      "Professionelle Zahnaufhellung mit Philips Zoom – schonend, sicher und mit sichtbar weißeren Zähnen.",
+    source: "/bleaching-troisdorf-zahnarztpraxis/",
+    confirmed: true,
+  },
+  {
+    id: "aligner",
+    name: "Unsichtbare Aligner",
+    icon: "aligner",
+    summary:
+      "Sanfte, diskrete Korrektur von Zahnfehlstellungen mit nahezu unsichtbaren Schienen.",
+    source: "/",
+    confirmed: true,
+  },
+  {
+    id: "angstpatienten",
+    name: "Angstpatienten & Lachgas",
+    icon: "heart",
+    summary:
+      "Einfühlsam, stressfrei und mit viel Zeit. Auf Wunsch entspannt mit Lachgas – Sie bleiben bei Bewusstsein, die Wirkung lässt schnell nach.",
+    includes: ["Lachgas-Sedierung"],
+    source: "/angstpatient-troisdorf-zahnarztpraxis/",
+    confirmed: true,
+  },
+  {
+    id: "zahnschmerzen",
+    name: "Zahnschmerzen & Notfälle",
+    icon: "bolt",
+    summary:
+      "Schnelle Hilfe während unserer Öffnungszeiten – mit täglichen Notfallzeiten kurz vor der Mittagszeit.",
+    source: "/zahnschmerzen-troisdorf/",
+    confirmed: true,
+  },
+  {
+    id: "dvt",
+    name: "3D-Röntgen (DVT)",
+    icon: "scan",
+    summary:
+      "Digitale Volumentomographie für präzise Diagnostik und sichere Planung – mit deutlich weniger Strahlung als ein CT.",
+    source: "/digitale-volumentomographie-troisdorf-3d-roentgen/",
+    confirmed: true,
   },
 ];
 
 export const reasons = {
-  eyebrow: "Warum Elara Zahnmedizin",
-  title: "Zahnmedizin, bei der *Sie* im Mittelpunkt stehen.",
+  eyebrow: "Warum Zahnarzt Olschewski",
+  title: "Zahnmedizin mit *Herz* und Kompetenz.",
   intro:
-    "Gute Zahnmedizin beginnt mit Zuhören. Deshalb nehmen wir uns Zeit für Sie – vom ersten Gespräch bis zur Nachsorge.",
+    "Egal, ob Vorsorge, Ästhetik oder Zahnersatz – wir begleiten Sie auf Ihrem Weg zu einem gesunden, schönen Lächeln.",
   items: [
     {
-      title: "Persönliche Beratung",
-      text: "Wir erklären Befunde verständlich und besprechen jede Behandlung vorab gemeinsam mit Ihnen.",
-      confirmed: false, // approach statement – please confirm wording
+      title: "Fachliche Exzellenz & transparente Beratung",
+      text: "Wir erklären komplexe Diagnosen so, dass Sie sie wirklich verstehen, und finden die Behandlung, die zu Ihnen passt.",
+      confirmed: true,
     },
     {
-      title: "Ruhige Atmosphäre",
-      text: "Helle, freundliche Räume, in denen Sie sich wohlfühlen und entspannt ankommen können.",
-      confirmed: false, // approach statement – please confirm wording
+      title: "Patientenorientierung mit Herz",
+      text: "Jeder Patient ist einzigartig – deshalb nehmen wir uns Zeit, hören zu und betreuen Sie einfühlsam und warmherzig.",
+      confirmed: true,
     },
     {
-      title: "Viele Behandlungen unter einem Dach",
-      text: "Von der Prophylaxe über Zahnerhaltung und Zahnersatz bis zur ästhetischen Zahnmedizin.",
-      confirmed: false, // depends on confirmed service list
+      title: "Angstpatienten willkommen",
+      text: "Mit Geduld, Verständnis und schonenden Methoden helfen wir Ihnen, Ihre Angst zu überwinden.",
+      confirmed: true,
     },
     {
-      title: "Einfach Termin anfragen",
-      text: "Rufen Sie uns an oder senden Sie uns eine Anfrage über das Formular – wir melden uns zur Terminabstimmung.",
+      title: "Schnelle Termine & kurze Wartezeiten",
+      text: "Dank effizienter Praxisorganisation bekommen Sie zügig einen Termin – und verbringen wenig Zeit im Wartezimmer.",
+      confirmed: true,
+    },
+    {
+      title: "Moderne Praxis mit Wohlfühlambiente",
+      text: "Entspannte Atmosphäre, moderne Ausstattung und ein freundliches Team machen Ihren Besuch so angenehm wie möglich.",
+      confirmed: true,
+    },
+    {
+      title: "Eigenes Meisterlabor",
+      text: "Zahnersatz entsteht direkt bei uns im Haus – das spart Wege und Zeit und sorgt für ein Ergebnis, das wirklich passt.",
       confirmed: true,
     },
   ],
 };
 
+export type TeamMember = { name: string; role: string; image: string };
+
 export const team = {
   eyebrow: "Team",
-  title: "Menschen, die sich *Zeit für Sie* nehmen.",
-  text: "Vom ersten Anruf bis zum Behandlungstermin begleitet Sie unser Praxisteam. Wir hören zu, beantworten Ihre Fragen und sorgen dafür, dass Sie sich bei uns gut aufgehoben fühlen.",
-  // No names, titles or biographies supplied yet – do not invent them.
-  members: [] as { name: string; role: string; bio?: string; image?: string }[],
+  title: "Z_O wie ziemlich *offenherzig*.",
+  text: "Teamwork entscheidet über die Qualität einer Zahnarztpraxis. Jeder macht das, was er am besten kann – und nur zusammen wird es gut. Unser gemeinsames Ziel: dass Sie gerne zu uns kommen, weil Sie herzlich empfangen werden und sich auf eine gute Behandlung verlassen können.",
+  // From zahnarzt-olschewski.de/team (photo ↔ person verified via the old site's alt texts).
+  members: [
+    { name: "Martin Olschewski", role: "Zahnarzt", image: praxis("troisdorf-zahnarzt-martin-olschewski2.webp") },
+    { name: "Konstantinos Arampatzis", role: "Zahnarzt", image: praxis("troisdorf-zahnarzt-martin-olschewski.webp") },
+    { name: "Fr. Aversa", role: "Praxismanagerin", image: praxis("zahnarzt-troisdorf-angstpatient.webp") },
+    { name: "Fr. Eisele", role: "Zahntechnik", image: praxis("zahnarzt-troisdorf-dentallabor.webp") },
+    { name: "Fr. Schneider", role: "Prophylaxe", image: praxis("team-portrait-2.webp") },
+    { name: "Fr. Kamerolli", role: "Hygienebeauftragte", image: praxis("team-portrait-3.webp") },
+    { name: "Fr. Kabole Wa Ngoyi", role: "Zahnmed. Fachangestellte", image: praxis("team-portrait-1.webp") },
+    { name: "Fr. Bassa-Toth", role: "Zahnmed. Fachangestellte", image: praxis("zahnarztpraxis-troisdorf.webp") },
+    { name: "Fr. Ajrulahi", role: "Rezeption", image: praxis("zahnarzt-troisdorf-veneers.webp") },
+    { name: "Fr. Wagner", role: "Verwaltung/Abrechnung", image: praxis("zahnarzt-troisdorf-bleaching.webp") },
+    { name: "Fr. Nalyvaiko", role: "Auszubildende", image: praxis("zahnarzt-troisdorf.webp") },
+  ] as TeamMember[],
 };
 
-
 export const bookingProcess = {
-  eyebrow: "So funktioniert's",
-  title: "In drei Schritten *zu Ihrem Termin*.",
-  intro: "Vom ersten Kontakt bis zum Besuch in der Praxis – so einfach kommen Sie zu uns.",
+  eyebrow: "Ihr erster Besuch",
+  title: "In drei Schritten *zu uns*.",
+  intro: "Vom ersten Kontakt bis zum Behandlungsstuhl – so einfach kommen Sie zu uns.",
   steps: [
     {
       image: "reception",
-      title: "Kontakt aufnehmen",
-      text: "Rufen Sie uns an oder senden Sie uns über das Formular eine Terminanfrage – ganz ohne Registrierung.",
+      title: "Termin vereinbaren",
+      text: "Buchen Sie Ihren Wunschtermin rund um die Uhr online über Doctolib oder rufen Sie uns an. Auch in der Mittagspause – wir machen durch.",
     },
     {
-      image: "teamGroup",
-      title: "Termin abstimmen",
-      text: "Wir melden uns bei Ihnen und stimmen gemeinsam einen passenden Termin ab. Verbindlich ist er erst mit unserer Bestätigung.",
+      image: "desk",
+      title: "Unterlagen mitbringen",
+      text: "Bitte denken Sie an Ihre Gesundheitskarte, vorhandene Pässe (Röntgen, Implantat, Allergie, Diabetes) und ggf. Ihre Medikamentenliste. Den Anamnesebogen können Sie vorab ausfüllen.",
     },
     {
-      image: "xray",
-      title: "Die Praxis besuchen",
-      text: "Am vereinbarten Tag empfangen wir Sie in unseren hellen Räumen in der Hauptstraße 56. Fragen vorab klären wir gern telefonisch.",
+      image: "treatment",
+      title: "Herzlich willkommen",
+      text: "Direkt am Pfarrer-Kenntemich-Platz gibt es einen großen Parkplatz, die Bushaltestellen Kuttgasse und Ursulaplatz sind zwei Minuten entfernt. Unsere Praxis ist barrierefrei.",
     },
   ] as { image: keyof typeof images; title: string; text: string }[],
 };
 
 export type Faq = { q: string; a: string; confirmed: boolean; note?: string };
 
+// Condensed from the FAQ on zahnarzt-olschewski.de.
 export const faqs: Faq[] = [
   {
-    q: "Wie kann ich einen Termin vereinbaren?",
-    a: `Am schnellsten erreichen Sie uns telefonisch unter ${practice.phone.display}. Alternativ senden Sie uns über das Formular auf dieser Seite eine Terminanfrage. Wir melden uns anschließend bei Ihnen, um einen passenden Termin abzustimmen.`,
+    q: "Muss ich für meinen ersten Termin etwas mitbringen?",
+    a: "Bitte bringen Sie Ihre Gesundheitskarte mit, falls vorhanden Ihren Röntgen-, Implantat-, Allergie- oder Diabetes-Pass sowie eine Medikamentenliste, wenn Sie regelmäßig Medikamente einnehmen. Den Anamnesebogen können Sie vorab ausfüllen oder direkt in der Praxis unterschreiben. Wenn Sie unsicher sind, rufen Sie uns gerne an.",
     confirmed: true,
   },
   {
-    q: "Ist mein Termin mit dem Absenden der Anfrage schon bestätigt?",
-    a: "Nein. Ihre Anfrage ist zunächst unverbindlich. Wir melden uns bei Ihnen, um einen Termin abzustimmen – verbindlich ist er erst, wenn wir ihn Ihnen bestätigt haben.",
+    q: "Kann ich einen Termin online buchen oder verschieben?",
+    a: `Ja – rund um die Uhr online über Doctolib. Wenn Sie einen Termin verschieben oder absagen möchten, rufen Sie uns unter ${practice.phone.display} an oder schreiben Sie eine E-Mail an ${practice.email}.`,
     confirmed: true,
   },
   {
-    q: "Wann ist die Praxis geöffnet?",
-    a: "Montag bis Freitag von 9:00 bis 17:00 Uhr und Samstag von 9:00 bis 12:00 Uhr. Sonntags ist die Praxis geschlossen.",
+    q: "Welche Zahlungsmöglichkeiten gibt es?",
+    a: "Sie können per EC-Karte, Kreditkarte oder bar zahlen. Für größere Behandlungen bieten wir über unsere Abrechnungspartner individuelle Ratenzahlungen an – sprechen Sie uns einfach an.",
     confirmed: true,
   },
   {
-    q: "Wo finde ich die Praxis?",
-    a: `Elara Zahnmedizin befindet sich am ${practice.address.street} in ${practice.address.postalCode} ${practice.address.city}. Über den Link „Route planen“ im Seitenfuß gelangen Sie direkt zur Wegbeschreibung.`,
+    q: "Wie lange sind die Wartezeiten?",
+    a: "Dank pünktlicher Terminplanung und einer gut organisierten Praxis bleibt Ihre Wartezeit in der Regel kurz. Kommt es durch Notfälle doch einmal zu Verzögerungen, bitten wir um Ihr Verständnis.",
     confirmed: true,
   },
   {
-    q: "Welche Behandlungen bieten Sie an?",
-    a: "Unser Leistungsspektrum reicht von Prophylaxe und Parodontitis-Behandlung über Füllungen, Wurzelbehandlungen und Zahnersatz bis zu Implantaten, Oralchirurgie, Kinderzahnheilkunde und ästhetischer Zahnmedizin. Welche Behandlung für Sie sinnvoll ist, besprechen wir nach einer Untersuchung persönlich mit Ihnen.",
-    confirmed: false,
-    note: "Hängt von der bestätigten Leistungsliste ab.",
+    q: "Gibt es Parkmöglichkeiten in der Nähe?",
+    a: "Ja, direkt auf dem Pfarrer-Kenntemich-Platz gibt es einen großen Parkplatz, nur wenige Schritte von der Praxis entfernt. Die Bushaltestellen Kuttgasse und Ursulaplatz erreichen Sie in zwei Gehminuten.",
+    confirmed: true,
   },
   {
-    q: "Ich habe akute Zahnschmerzen – was soll ich tun?",
-    a: "Bitte rufen Sie uns während der Öffnungszeiten direkt an, damit wir das weitere Vorgehen mit Ihnen besprechen können. Das Anfrageformular ist für dringende Anliegen nicht geeignet. Außerhalb unserer Öffnungszeiten wenden Sie sich bitte an den zahnärztlichen Notdienst.",
-    confirmed: false,
-    note: "Bitte bestätigen, wie akute Fälle gehandhabt werden.",
-  },
-  // Drafts: only visible in review mode until the practice supplies the answers.
-  {
-    q: "Behandeln Sie gesetzlich und privat versicherte Patientinnen und Patienten?",
-    a: "[Antwort der Praxis erforderlich]",
-    confirmed: false,
-    note: "Versicherungsfrage – Antwort muss von der Praxis kommen.",
+    q: "Behandeln Sie auch Angstpatienten?",
+    a: "Oh ja, und das mit viel Einfühlungsvermögen. Wir nehmen uns besonders viel Zeit, erklären jeden Schritt, sodass Sie jederzeit die Kontrolle behalten, und sorgen für eine entspannte Atmosphäre. Auf Wunsch ist auch eine Behandlung mit Lachgas möglich.",
+    confirmed: true,
   },
   {
-    q: "Was sollte ich zum ersten Termin mitbringen?",
-    a: "[Antwort der Praxis erforderlich]",
-    confirmed: false,
-    note: "Z. B. Versichertenkarte, Bonusheft, Medikamentenliste – bitte bestätigen.",
+    q: "Ist die Praxis barrierefrei?",
+    a: "Ja. Unsere Räume sind barrierefrei, wir haben einen rollstuhlfreundlichen Behandlungsstuhl und behandeln auch Liegendpatienten. Mit unserem Recall-Service erinnern wir Sie auf Wunsch an Ihren nächsten Termin.",
+    confirmed: true,
   },
   {
-    q: "Ich habe Angst vor der Zahnbehandlung. Können Sie darauf eingehen?",
-    a: "[Antwort der Praxis erforderlich]",
-    confirmed: false,
-    note: "Angstpatienten werden auf alldent-zahnzentrum-augsburg.de angesprochen – Angebot bitte bestätigen.",
+    q: "Ich habe Zahnschmerzen – was kann ich tun?",
+    a: `Rufen Sie uns während der Öffnungszeiten unter ${practice.phone.display} an: Für Schmerzpatienten haben wir täglich Notfallzeiten kurz vor der Mittagszeit. Abends und am Wochenende wenden Sie sich bitte an den zahnärztlichen Notdienst. Bis zu Ihrem Termin können Kühlen, eine Salzwasserspülung oder ein Schmerzmittel (nach Packungsbeilage) helfen.`,
+    confirmed: true,
   },
 ];
 
@@ -392,55 +448,60 @@ export const visibleFaqs = faqs.filter(
 
 export const contact = {
   eyebrow: "Kontakt & Terminanfrage",
-  title: "Wir *freuen uns* auf Sie.",
+  title: "Viele Wege *führen zu uns*.",
   intro:
-    "Rufen Sie uns an oder senden Sie uns eine Terminanfrage. Wir melden uns bei Ihnen, um einen passenden Termin zu vereinbaren.",
+    "Buchen Sie online, rufen Sie uns an oder senden Sie uns eine Nachricht. Wir melden uns bei Ihnen, um einen passenden Termin zu vereinbaren.",
   preferences: [
     { value: "", label: "Keine Präferenz" },
     { value: "vormittags", label: "Vormittags" },
     { value: "nachmittags", label: "Nachmittags" },
-    { value: "samstag", label: "Samstagvormittag" },
   ],
 };
 
-/** Patient testimonials (Google reviews supplied by the client). Shown as a carousel. */
+/** Patient testimonials (Google reviews shown on the old website). Shown as a carousel. */
 export const testimonials = {
-  eyebrow: "Stimmen unserer Patienten",
+  eyebrow: "Rezensionen bei Google",
   title: "Was unsere Patientinnen und Patienten *sagen*.",
-  // Supplied by the client (Google reviews).
   items: [
     {
       quote:
-        "Sehr nette Zahnärzte machen ihre Arbeit sehr gut und nehmen sich ebenfalls Zeit für die Patienten, mitarbeiten ebenfalls auch sehr nett. Kann man nur weiter empfehlen werde dort weiterhin bleiben.",
-      name: "Alex B.",
+        "Herr Dr. Olschewski nimmt mir seit vielen Jahren mit seiner fachlichen Kompetenz sowie seiner freundlichen und persönlichen Art die Angst vor Zahnarztbesuchen. Er ist der erste Zahnarzt, bei dem ich keine Termine kurzfristig absage und zu meinen Vorsorgeterminen zuverlässig erscheine. Von Füllungen bis hin zu Implantaten wurde ich stets bestens beraten und versorgt. 100 % empfehlenswert!",
+      name: "Daniela S.",
       source: "Google",
       rating: 5,
     },
     {
       quote:
-        "Kompetenter und einfühlsamer Arzt, der sich immer ausreichend Zeit für mich nimmt. Freundliches Praxisteam, moderne Räume und super Organisation, Wartezeit meist max. 5 Minuten.",
-      name: "Maria T.",
+        "Ich bin sehr zufrieden mit der Praxis und hatte dort bereits mehrere Behandlungen, darunter Füllungen und professionelle Zahnreinigungen. Termine bekommt man hier recht schnell. Sowohl Dr. Olschewski als auch sein gesamtes Team sind äußerst freundlich und professionell. Die Praxis selbst ist modern und einladend eingerichtet. Ich kann diese Praxis – insbesondere auch für Angstpatienten – absolut weiterempfehlen!",
+      name: "Zehra",
       source: "Google",
       rating: 5,
     },
     {
       quote:
-        "Sehr herzlich und top Leistung. Man fühlt sich aufgehoben und wird immer freundlich empfangen, sowohl in der Praxis als auch am Telefon. Einfach rundum ein Top Service! Macht weiter so.",
-      name: "Michael R.",
+        "Ich war viele Jahre Angstpatient und es mussten einige Behandlungen durchgeführt werden. In dieser Praxis wurde mir wirklich geholfen. Dr. Olschewski ist sehr einfühlsam und professionell – ich fühle mich hier bestens aufgehoben und habe keine Angst mehr. Auch das gesamte Team ist äußerst freundlich und zuvorkommend. Ich kann diese Praxis nur empfehlen – ein TOP-Zahnarzt!",
+      name: "Lars A.",
       source: "Google",
       rating: 5,
     },
     {
       quote:
-        "Sehr netter Zahnarzt, fachlich sehr gut mit einem ausgesprochen tollen Team. Gute Prophylaxe. Sind schon viele Jahre mit der ganzen Familie in dieser Praxis und immer sehr zufrieden. Kann man nur empfehlen.",
-      name: "Jennifer F.",
+        "Ich bin begeistert von dieser Praxis und dem gesamten Team! Vom ersten Kontakt an habe ich mich hier wohlgefühlt und besonders professionell behandelt gefühlt. Das gesamte Team ist offen, freundlich und hilfsbereit. Die Beratung ist umfassend und kompetent. Ich bin sehr froh, Patient in der Praxis von Dr. Olschewski zu sein!",
+      name: "Timo W.",
       source: "Google",
       rating: 5,
     },
     {
       quote:
-        "Klasse Zahnarzt, der gut erklärt und kommuniziert, alles mit einer Prise Humor. Zuvorkommender Service, komme auf jeden Fall wieder.",
-      name: "Richard S.",
+        "Eine wirklich gute Zahnarztpraxis mit freundlichem Empfang. Zeitnahe Terminvergabe und so gut wie keine Wartezeiten. Top Organisation! Sehr einfühlsam und kompetent. Angstpatienten sind bei Ihnen in sehr guten Händen. Ich kann nur Positives berichten und diese Zahnarztpraxis weiterempfehlen.",
+      name: "Angela",
+      source: "Google",
+      rating: 5,
+    },
+    {
+      quote:
+        "Ich bin eine absolute Angstpatientin, doch diese Angst wurde mir bereits beim ersten Termin genommen. Ein großes Lob an Herrn Dr. Olschewski und sein Team!",
+      name: "Denise G.",
       source: "Google",
       rating: 5,
     },
@@ -448,7 +509,7 @@ export const testimonials = {
 };
 
 export const seo = {
-  title: "Elara Zahnmedizin – Zahnarzt in Meitingen | Termin vereinbaren",
+  title: "Zahnarzt Troisdorf | Moderne Zahnmedizin | Martin Olschewski",
   description:
-    "Zahnarztpraxis in Meitingen: Prophylaxe, Zahnerhaltung, Zahnersatz, Implantate und mehr. Persönliche Beratung – Termin telefonisch oder online anfragen.",
+    "Zahnarzt in Troisdorf – ehrlich, herzlich, kompetent. Zahnersatz aus eigenem Meisterlabor, Implantate, Prophylaxe, Veneers & Bleaching. Angstpatienten willkommen. Termin online buchen.",
 };

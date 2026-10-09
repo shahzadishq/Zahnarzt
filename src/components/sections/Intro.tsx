@@ -5,14 +5,14 @@ import { ReviewBadge } from "../Cta";
 import { Rich } from "../Rich";
 
 export function Intro() {
-  const img = images.teamWalking;
+  const img = images.intro;
   return (
     <section id="praxis" aria-labelledby="praxis-title" className="py-20 sm:py-24 lg:py-32">
       <div className="container-page grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="relative mx-auto w-full max-w-md lg:col-span-5 lg:max-w-none">
           <div
             aria-hidden="true"
-            className="absolute -top-5 -left-5 h-2/3 w-2/3 rounded-[2rem] bg-navy-100 sm:-top-6 sm:-left-6"
+            className="absolute -top-5 -left-5 h-2/3 w-2/3 rounded-[2rem] bg-charcoal-100 sm:-top-6 sm:-left-6"
           />
           <Image
             src={img.src}
@@ -39,7 +39,7 @@ export function Intro() {
           <ul className="mt-8 space-y-3">
             {intro.points.map((point) => (
               <li key={point} className="flex items-start gap-3 font-medium text-ink">
-                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy-800 text-white">
+                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-charcoal-800 text-white">
                   <CheckIcon className="h-3.5 w-3.5" strokeWidth={2.4} />
                 </span>
                 {point}
@@ -48,7 +48,7 @@ export function Intro() {
           </ul>
           <a
             href="#leistungen"
-            className="mt-9 inline-flex items-center gap-2 font-semibold text-navy-800 link-underline"
+            className="mt-9 inline-flex items-center gap-2 font-semibold text-charcoal-800 link-underline"
           >
             Unsere Leistungen ansehen
           </a>

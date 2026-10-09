@@ -67,19 +67,19 @@ export function Header() {
         open
           ? "border-b border-line bg-white"
           : scrolled
-            ? "border-b border-line/80 bg-white/95 shadow-[0_6px_24px_-18px_rgb(16_63_114/0.5)] backdrop-blur-md"
+            ? "border-b border-line/80 bg-white/95 shadow-[0_6px_24px_-18px_rgb(30_30_30/0.4)] backdrop-blur-md"
             : "border-b border-transparent bg-white"
       }`}
     >
       <a
         href="#inhalt"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[70] focus:rounded-full focus:bg-navy-800 focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[70] focus:rounded-full focus:bg-charcoal-800 focus:px-4 focus:py-2 focus:text-white"
       >
         Zum Inhalt springen
       </a>
       <div className="container-page flex h-[4.25rem] items-center justify-between gap-6 lg:h-[4.75rem]">
-        <a href="#top" className="-ml-1 shrink-0 rounded-md p-1" aria-label="Elara Zahnmedizin – zum Seitenanfang">
-          <Logo className="h-11 w-auto lg:h-12" />
+        <a href="#top" className="-ml-1 shrink-0 rounded-md p-1" aria-label="Zahnarzt Olschewski – zum Seitenanfang">
+          <Logo className="h-[1.35rem] w-auto lg:h-6" />
         </a>
 
         <nav aria-label="Hauptnavigation" className="hidden lg:block">
@@ -88,7 +88,7 @@ export function Header() {
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-full px-3.5 py-2 text-[0.93rem] font-medium text-ink/80 transition-colors hover:bg-sand hover:text-navy-900"
+                  className="rounded-full px-3.5 py-2 text-[0.93rem] font-medium text-ink/80 transition-colors hover:bg-sand hover:text-charcoal-900"
                 >
                   {item.label}
                 </a>
@@ -100,7 +100,7 @@ export function Header() {
         <div className="hidden items-center gap-2 lg:flex">
           <PhoneLink
             location="header"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-[0.93rem] font-semibold text-navy-800 transition-colors hover:bg-sand"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-[0.93rem] font-semibold text-charcoal-800 transition-colors hover:bg-sand"
           />
           <AppointmentLink location="header" className="btn-primary min-h-11 px-5" icon={false} />
         </div>
@@ -109,7 +109,7 @@ export function Header() {
           <a
             href={practice.phone.href}
             data-track-location="header-mobile"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-navy-800 hover:bg-sand"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal-800 hover:bg-sand"
             aria-label={`Anrufen: ${practice.phone.display}`}
           >
             <PhoneIcon className="h-5 w-5" />
@@ -117,7 +117,7 @@ export function Header() {
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-navy-800 hover:bg-sand"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal-800 hover:bg-sand"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Menü schließen" : "Menü öffnen"}
@@ -141,10 +141,10 @@ export function Header() {
                 <a
                   href={item.href}
                   onClick={() => close(false)}
-                  className="flex items-center justify-between py-4 text-2xl font-extrabold tracking-tight text-navy-900"
+                  className="flex items-center justify-between py-4 text-2xl font-semibold tracking-tight text-charcoal-900"
                 >
                   {item.label}
-                  <span aria-hidden="true" className="text-teal-500">→</span>
+                  <span aria-hidden="true" className="text-steel-500">→</span>
                 </a>
               </li>
             ))}

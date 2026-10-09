@@ -15,7 +15,7 @@ import { AlertIcon, CheckIcon } from "./Icons";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const inputBase =
-  "mt-2 block w-full rounded-xl border bg-white px-4 py-3 text-base text-ink shadow-[inset_0_1px_2px_rgb(16_63_114/0.04)] transition-colors placeholder:text-muted/60 hover:border-navy-800/40 focus:border-navy-800 focus:outline-none focus-visible:outline-3 focus-visible:outline-teal-500/60 focus-visible:outline-offset-0";
+  "mt-2 block w-full rounded-xl border bg-white px-4 py-3 text-base text-ink shadow-[inset_0_1px_2px_rgb(30_30_30/0.04)] transition-colors placeholder:text-muted/60 hover:border-charcoal-800/40 focus:border-charcoal-800 focus:outline-none focus-visible:outline-3 focus-visible:outline-steel-500/60 focus-visible:outline-offset-0";
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -116,10 +116,10 @@ export function ContactForm() {
         role="status"
         className="flex flex-col items-start rounded-[1.5rem] bg-white p-7 sm:p-10"
       >
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal-500/15 text-teal-700">
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-steel-500/15 text-steel-700">
           <CheckIcon className="h-6 w-6" strokeWidth={2.2} />
         </span>
-        <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">Vielen Dank für Ihre Anfrage.</h3>
+        <h3 className="mt-5 text-2xl font-semibold tracking-tight text-charcoal-900 sm:text-3xl">Vielen Dank für Ihre Anfrage.</h3>
         <p className="mt-3 leading-relaxed text-muted">
           Ihre Nachricht ist bei uns eingegangen. Wir melden uns bei Ihnen, um einen Termin
           abzustimmen. Bitte beachten Sie: Ihr Termin ist erst verbindlich, wenn wir ihn Ihnen
@@ -130,7 +130,7 @@ export function ContactForm() {
           <a
             href={practice.phone.href}
             data-track-location="form-success"
-            className="font-semibold text-navy-800 link-underline"
+            className="font-semibold text-charcoal-800 link-underline"
           >
             {practice.phone.display}
           </a>
@@ -152,7 +152,7 @@ export function ContactForm() {
       aria-busy={status === "submitting"}
       className="rounded-[1.5rem] bg-white p-6 sm:p-9"
     >
-      <h3 id="form-title" className="text-2xl leading-tight font-extrabold tracking-tight text-navy-900">
+      <h3 id="form-title" className="text-2xl leading-tight font-semibold tracking-tight text-charcoal-900">
         Terminanfrage senden
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -192,8 +192,8 @@ export function ContactForm() {
         </Field>
 
         <fieldset>
-          <legend className="text-[0.93rem] font-semibold text-navy-900">
-            Wie dürfen wir Sie erreichen? <span aria-hidden="true" className="text-teal-700">*</span>
+          <legend className="text-[0.93rem] font-semibold text-charcoal-900">
+            Wie dürfen wir Sie erreichen? <span aria-hidden="true" className="text-steel-700">*</span>
           </legend>
           <div className="mt-2 grid grid-cols-2 gap-2 rounded-xl bg-sand p-1">
             {(
@@ -204,8 +204,8 @@ export function ContactForm() {
             ).map(([value, label]) => (
               <label
                 key={value}
-                className={`relative flex min-h-11 cursor-pointer items-center justify-center rounded-lg text-sm font-semibold transition has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-teal-500 ${
-                  method === value ? "bg-white text-navy-900 shadow-soft" : "text-muted hover:text-navy-900"
+                className={`relative flex min-h-11 cursor-pointer items-center justify-center rounded-lg text-sm font-semibold transition has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-steel-500 ${
+                  method === value ? "bg-white text-charcoal-900 shadow-soft" : "text-muted hover:text-charcoal-900"
                 }`}
               >
                 <input
@@ -312,7 +312,7 @@ export function ContactForm() {
         <p className="text-xs leading-relaxed text-muted">
           Wir verwenden Ihre Angaben ausschließlich, um Ihre Anfrage zu bearbeiten und Sie zur
           Terminabstimmung zu kontaktieren. Weitere Informationen finden Sie in unserer{" "}
-          <a href={legal.datenschutzHref} className="font-semibold text-navy-800 link-underline">
+          <a href={legal.datenschutzHref} className="font-semibold text-charcoal-800 link-underline">
             Datenschutzerklärung
           </a>
           .
@@ -359,10 +359,10 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="text-[0.93rem] font-semibold text-navy-900">
+      <label htmlFor={id} className="text-[0.93rem] font-semibold text-charcoal-900">
         {label}
         {required && (
-          <span aria-hidden="true" className="text-teal-700">
+          <span aria-hidden="true" className="text-steel-700">
             {" "}
             *
           </span>

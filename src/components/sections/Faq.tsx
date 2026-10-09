@@ -17,7 +17,7 @@ export function Faq() {
             <a
               href={practice.phone.href}
               data-track-location="faq"
-              className="font-semibold whitespace-nowrap text-navy-800 link-underline"
+              className="font-semibold whitespace-nowrap text-charcoal-800 link-underline"
             >
               {practice.phone.display}
             </a>
@@ -33,7 +33,7 @@ export function Faq() {
               buttonClassName="py-5 sm:py-6"
               panelClassName="pb-6 pr-12"
               heading={
-                <span className="block text-[1.07rem] leading-snug font-semibold text-navy-900 sm:text-lg">
+                <span className="block text-[1.07rem] leading-snug font-semibold text-charcoal-900 sm:text-lg">
                   {faq.q}
                   <ReviewBadge show={integrations.reviewMode && !faq.confirmed} note={faq.note} />
                 </span>

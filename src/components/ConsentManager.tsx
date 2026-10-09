@@ -65,7 +65,7 @@ export function ConsentManager() {
           aria-labelledby="consent-title"
           className="fixed inset-x-3 bottom-[5.5rem] z-[60] mx-auto max-w-xl rounded-2xl border border-line bg-white p-5 shadow-lift sm:bottom-6 lg:inset-x-auto lg:right-6"
         >
-          <h2 id="consent-title" className="font-semibold text-navy-900">
+          <h2 id="consent-title" className="font-semibold text-charcoal-900">
             Datenschutz-Einstellungen
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-muted">
@@ -73,7 +73,7 @@ export function ConsentManager() {
             Anzeigen zu messen (z. B. Klicks auf „Termin vereinbaren“). Ohne Zustimmung werden
             keine entsprechenden Dienste geladen. Sie können Ihre Auswahl jederzeit über
             „Cookie-Einstellungen“ im Seitenfuß ändern. Mehr in der{" "}
-            <a href={legal.datenschutzHref} className="link-underline text-navy-800">
+            <a href={legal.datenschutzHref} className="link-underline text-charcoal-800">
               Datenschutzerklärung
             </a>
             .

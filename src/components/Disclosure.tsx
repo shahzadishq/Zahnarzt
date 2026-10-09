@@ -45,8 +45,8 @@ export function Disclosure({
           <span className="min-w-0 flex-1">{heading}</span>
           <span
             aria-hidden="true"
-            className={`${align === "center" ? "" : "mt-0.5"} inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-navy-800/20 text-navy-800 transition duration-300 group-hover:border-navy-800 group-hover:bg-white ${
-              open ? "rotate-45 border-navy-800 bg-navy-800 text-white group-hover:bg-navy-800" : ""
+            className={`${align === "center" ? "" : "mt-0.5"} inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-charcoal-800/20 text-charcoal-800 transition duration-300 group-hover:border-charcoal-800 group-hover:bg-white ${
+              open ? "rotate-45 border-charcoal-800 bg-charcoal-800 text-white group-hover:bg-charcoal-800" : ""
             } ${iconClassName}`}
           >
             <PlusIcon className="h-4 w-4" strokeWidth={2} />

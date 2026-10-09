@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { images, integrations, team } from "@/content/site";
+import { images, team, type TeamMember } from "@/content/site";
 import { AppointmentLink } from "../Cta";
 import { Rich } from "../Rich";
 
 export function Team() {
-  const img = images.teamGroup;
+  const img = images.team;
+  const dentists = team.members.filter((m) => m.role === "Zahnarzt");
+  const staff = team.members.filter((m) => m.role !== "Zahnarzt");
   return (
     <section id="team" aria-labelledby="team-title" className="py-20 sm:py-24 lg:py-32">
       <div className="container-page">
@@ -28,25 +30,44 @@ export function Team() {
           </div>
         </div>
 
-        {team.members.length > 0 && (
-          <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {team.members.map((m) => (
-              <li key={m.name}>
-                <h3 className="text-xl font-extrabold text-navy-900">{m.name}</h3>
-                <p className="text-sm font-semibold text-teal-700">{m.role}</p>
-                {m.bio && <p className="mt-2 text-muted">{m.bio}</p>}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {integrations.reviewMode && team.members.length === 0 && (
-          <p className="mt-8 rounded-xl border border-dashed border-amber-600 bg-amber-50 p-4 text-sm text-amber-900">
-            Entwurf: Namen, Funktionen und Kurzprofile des Teams wurden noch nicht geliefert und
-            werden nach Freigabe ergänzt.
-          </p>
-        )}
+        {/* Portraits in grayscale like the old site; colour on hover. Dentists first, larger. */}
+        <ul className="mt-16 grid gap-x-5 gap-y-8 sm:grid-cols-2">
+          {dentists.map((m) => (
+            <Member key={m.name} member={m} wide />
+          ))}
+        </ul>
+        <ul className="mt-10 grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3">
+          {staff.map((m) => (
+            <Member key={m.name} member={m} />
+          ))}
+        </ul>
       </div>
     </section>
+  );
+}
+
+function Member({ member: m, wide = false }: { member: TeamMember; wide?: boolean }) {
+  return (
+    <li>
+      <figure className="group">
+        <div className="overflow-hidden rounded-[1.25rem] bg-sand">
+          <Image
+            src={m.image}
+            alt={`${m.name}, ${m.role}`}
+            width={600}
+            height={wide ? 380 : 600}
+            loading="lazy"
+            sizes={wide ? "(min-width: 1216px) 560px, (min-width: 640px) 50vw, 100vw" : "(min-width: 1216px) 370px, (min-width: 640px) 33vw, 50vw"}
+            className={`h-auto w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 ${
+              wide ? "aspect-[16/10] object-[70%_center]" : "aspect-square object-top"
+            }`}
+          />
+        </div>
+        <figcaption className="mt-3">
+          <span className="block font-semibold text-charcoal-900">{m.name}</span>
+          <span className="block text-sm text-steel-700">{m.role}</span>
+        </figcaption>
+      </figure>
+    </li>
   );
 }

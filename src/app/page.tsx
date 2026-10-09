@@ -20,6 +20,8 @@ function structuredData() {
     name: practice.name,
     description: seo.description,
     telephone: practice.phone.e164,
+    founder: { "@type": "Person", name: practice.owner },
+    sameAs: [practice.instagram],
     email: practice.email,
     address: {
       "@type": "PostalAddress",
@@ -36,8 +38,8 @@ function structuredData() {
     })),
     ...(url && {
       url,
-      image: new URL(images.consultation.src, url).href,
-      logo: new URL(withBase("/images/elara-logo.svg"), url).href,
+      image: new URL(images.hero.src, url).href,
+      logo: new URL(withBase("/images/brand/olschewski-logo.svg"), url).href,
     }),
   };
 }

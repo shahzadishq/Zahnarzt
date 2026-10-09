@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { images, integrations, practice, seo } from "@/content/site";
 import { ConsentManager } from "@/components/ConsentManager";
 import { AnalyticsListener } from "@/components/AnalyticsListener";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+// Free geometric stand-in for the brand's licensed Euclid Circular A (see docs/brand/BRAND.md).
+const brandFont = DM_Sans({
+  variable: "--font-brand",
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,10 +32,10 @@ export const metadata: Metadata = {
       url: "/",
       images: [
         {
-          url: new URL(images.consultation.src, siteUrl).href,
-          width: images.consultation.width,
-          height: images.consultation.height,
-          alt: images.consultation.alt,
+          url: new URL(images.hero.src, siteUrl).href,
+          width: images.hero.width,
+          height: images.hero.height,
+          alt: images.hero.alt,
         },
       ],
     }),
@@ -56,7 +57,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="de" className={`${manrope.variable} antialiased`}>
+    <html lang="de" className={`${brandFont.variable} antialiased`}>
       <body className="min-h-dvh">
         {children}
         <AnalyticsListener />

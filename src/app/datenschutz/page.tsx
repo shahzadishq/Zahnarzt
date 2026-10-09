@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/LegalPage";
 import { datenschutz } from "@/content/legal";
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung | Elara Zahnmedizin",
+  title: "Datenschutzerklärung | Zahnarzt Olschewski",
 };
 
 export default function Page() {
