@@ -91,7 +91,7 @@ export function Testimonials() {
               onClick={() => step(1)}
               disabled={!canNext}
               aria-label="Nächste Bewertungen"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-charcoal-800 text-white transition hover:bg-charcoal-900 disabled:cursor-not-allowed disabled:opacity-35"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-steel-500 text-charcoal-900 transition hover:bg-steel-600 disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ArrowIcon className="h-5 w-5" />
             </button>

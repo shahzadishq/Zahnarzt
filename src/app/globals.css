@@ -11,6 +11,7 @@
   --color-charcoal-100: #e9eef0;
   --color-steel-300: #c5d5db;
   --color-steel-500: #8aa7b2;
+  --color-steel-600: #7896a2;
   --color-steel-700: #4a6a76;
   --color-sun: #ffd259;
   --color-ivory: #f5f6f6;
@@ -91,10 +92,11 @@ body {
     @apply block h-1.5 w-1.5 shrink-0 rounded-full bg-steel-500;
   }
 }
-@utility eyebrow-dark {
-  @apply eyebrow bg-white/10 text-steel-300;
+/* Pill label on the steel-blue sections */
+@utility eyebrow-steel {
+  @apply eyebrow bg-white/45 text-charcoal-900;
   &::before {
-    @apply bg-steel-300;
+    @apply bg-charcoal-900;
   }
 }
 
@@ -125,7 +127,7 @@ body {
   @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-semibold transition duration-200 ease-out;
 }
 @utility btn-primary {
-  @apply btn bg-charcoal-800 text-white shadow-[0_8px_20px_-8px_rgb(30_30_30/0.5)] hover:-translate-y-px hover:bg-charcoal-900 active:translate-y-0;
+  @apply btn bg-steel-500 text-charcoal-900 shadow-[0_8px_20px_-8px_rgb(74_106_118/0.6)] hover:-translate-y-px hover:bg-steel-600 active:translate-y-0;
 }
 @utility btn-light {
   @apply btn bg-white text-charcoal-900 hover:-translate-y-px hover:bg-ivory active:translate-y-0;
