@@ -281,7 +281,7 @@ export function ContactForm() {
           label="Kurze Nachricht"
           optional
           error={err("message")}
-          hint="Bitte geben Sie hier keine vertraulichen Gesundheitsinformationen ein – Details besprechen wir gern persönlich."
+          hint="Bitte geben Sie hier keine vertraulichen Gesundheitsinformationen ein."
         >
           <textarea
             id="f-message"

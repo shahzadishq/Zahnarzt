@@ -24,7 +24,7 @@ export function Contact() {
                 data-track-location="contact"
                 className="group flex items-center gap-4 rounded-2xl border border-charcoal-900/10 bg-white/35 p-5 transition-colors hover:border-charcoal-900/30 hover:bg-white/60"
               >
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sun text-charcoal-950">
+                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-charcoal-900 text-white">
                   <CalendarIcon className="h-5 w-5" strokeWidth={2} />
                 </span>
                 <span>
@@ -51,7 +51,7 @@ export function Contact() {
               data-track-location="contact"
               className="group flex items-center gap-4 rounded-2xl border border-charcoal-900/10 bg-white/35 p-5 transition-colors hover:border-charcoal-900/30 hover:bg-white/60"
             >
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-charcoal-900">
+              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-charcoal-900 text-white">
                 <MailIcon className="h-5 w-5" strokeWidth={2} />
               </span>
               <span className="min-w-0">
