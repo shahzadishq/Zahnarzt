@@ -55,11 +55,11 @@ function Member({ member: m, wide = false }: { member: TeamMember; wide?: boolea
             src={m.image}
             alt={`${m.name}, ${m.role}`}
             width={600}
-            height={wide ? 380 : 600}
+            height={wide ? 380 : 750}
             loading="lazy"
             sizes={wide ? "(min-width: 1216px) 560px, (min-width: 640px) 50vw, 100vw" : "(min-width: 1216px) 370px, (min-width: 640px) 33vw, 50vw"}
             className={`h-auto w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 ${
-              wide ? "aspect-[16/10] object-[70%_center]" : "aspect-square object-top"
+              wide ? "aspect-[16/10] object-[70%_center]" : "aspect-[4/5]"
             }`}
           />
         </div>

@@ -356,19 +356,20 @@ export const team = {
   eyebrow: "Team",
   title: "Z_O wie ziemlich *offenherzig*.",
   text: "Teamwork entscheidet über die Qualität einer Zahnarztpraxis. Jeder macht das, was er am besten kann – und nur zusammen wird es gut. Unser gemeinsames Ziel: dass Sie gerne zu uns kommen, weil Sie herzlich empfangen werden und sich auf eine gute Behandlung verlassen können.",
-  // From zahnarzt-olschewski.de/team (photo ↔ person verified via the old site's alt texts).
+  // Same order as zahnarzt-olschewski.de/team (photo ↔ person verified via the old site's alt texts).
+  // Staff portraits are cropped so every head sits at the same height (public/images/praxis/team).
   members: [
     { name: "Martin Olschewski", role: "Zahnarzt", image: praxis("troisdorf-zahnarzt-martin-olschewski2.webp") },
     { name: "Konstantinos Arampatzis", role: "Zahnarzt", image: praxis("troisdorf-zahnarzt-martin-olschewski.webp") },
-    { name: "Fr. Aversa", role: "Praxismanagerin", image: praxis("zahnarzt-troisdorf-angstpatient.webp") },
-    { name: "Fr. Eisele", role: "Zahntechnik", image: praxis("zahnarzt-troisdorf-dentallabor.webp") },
-    { name: "Fr. Schneider", role: "Prophylaxe", image: praxis("team-portrait-2.webp") },
-    { name: "Fr. Kamerolli", role: "Hygienebeauftragte", image: praxis("team-portrait-3.webp") },
-    { name: "Fr. Kabole Wa Ngoyi", role: "Zahnmed. Fachangestellte", image: praxis("team-portrait-1.webp") },
-    { name: "Fr. Bassa-Toth", role: "Zahnmed. Fachangestellte", image: praxis("zahnarztpraxis-troisdorf.webp") },
-    { name: "Fr. Ajrulahi", role: "Rezeption", image: praxis("zahnarzt-troisdorf-veneers.webp") },
-    { name: "Fr. Wagner", role: "Verwaltung/Abrechnung", image: praxis("zahnarzt-troisdorf-bleaching.webp") },
-    { name: "Fr. Nalyvaiko", role: "Auszubildende", image: praxis("zahnarzt-troisdorf.webp") },
+    { name: "Fr. Schneider", role: "Prophylaxe", image: praxis("team/schneider.webp") },
+    { name: "Fr. Kamerolli", role: "Hygienebeauftragte", image: praxis("team/kamerolli.webp") },
+    { name: "Fr. Kabole Wa Ngoyi", role: "Zahnmed. Fachangestellte", image: praxis("team/kabole-wa-ngoyi.webp") },
+    { name: "Fr. Ajrulahi", role: "Rezeption", image: praxis("team/ajrulahi.webp") },
+    { name: "Fr. Bassa-Toth", role: "Zahnmed. Fachangestellte", image: praxis("team/bassa-toth.webp") },
+    { name: "Fr. Eisele", role: "Zahntechnik", image: praxis("team/eisele.webp") },
+    { name: "Fr. Wagner", role: "Verwaltung/Abrechnung", image: praxis("team/wagner.webp") },
+    { name: "Fr. Nalyvaiko", role: "Auszubildende", image: praxis("team/nalyvaiko.webp") },
+    { name: "Fr. Aversa", role: "Praxismanagerin", image: praxis("team/aversa.webp") },
   ] as TeamMember[],
 };
 
