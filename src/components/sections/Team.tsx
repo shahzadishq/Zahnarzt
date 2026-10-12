@@ -18,9 +18,9 @@ export function Team() {
             height={img.height}
             loading="lazy"
             sizes="(min-width: 1216px) 1136px, 100vw"
-            className="aspect-[4/3] h-auto w-full rounded-[1.75rem] object-cover object-[62%_center] shadow-soft sm:aspect-[16/9] lg:rounded-[2.25rem]"
+            className="aspect-[4/3] h-auto w-full rounded-[1.75rem] object-cover object-[30%_center] shadow-soft sm:aspect-[16/9] lg:rounded-[2.25rem]"
           />
-          <div className="relative -mt-16 mx-3 rounded-[1.5rem] border border-line bg-white p-7 shadow-lift sm:mx-8 sm:p-9 lg:absolute lg:bottom-10 lg:left-10 lg:mx-0 lg:mt-0 lg:max-w-md">
+          <div className="relative -mt-16 mx-3 rounded-[1.5rem] border border-line bg-white p-7 shadow-lift sm:mx-8 sm:p-9 lg:absolute lg:right-10 lg:bottom-10 lg:mx-0 lg:mt-0 lg:max-w-md">
             <p className="eyebrow">{team.eyebrow}</p>
             <h2 id="team-title" className="heading-lg mt-3 text-balance">
               <Rich text={team.title} />

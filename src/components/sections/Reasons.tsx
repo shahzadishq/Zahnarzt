@@ -7,13 +7,13 @@ export function Reasons() {
   return (
     <section
       aria-labelledby="gruende-title"
-      className="relative overflow-hidden bg-steel-500 py-20 text-charcoal-900 sm:py-24 lg:py-28"
+      className="relative overflow-clip bg-steel-500 [--hl:#ffffff] py-20 text-charcoal-900 sm:py-24 lg:py-28"
     >
       {/* the brand's Z_O monogram, as a quiet background motif */}
       <Monogram className="pointer-events-none absolute -right-16 -bottom-10 w-[34rem] text-charcoal-900/[0.06]" />
 
       <div className="container-page relative grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
+        <div className="lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
           <p className="eyebrow-steel">{reasons.eyebrow}</p>
           <h2 id="gruende-title" className="heading-lg mt-4 text-balance">
             <Rich text={reasons.title} />

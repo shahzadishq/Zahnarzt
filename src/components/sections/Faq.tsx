@@ -7,7 +7,7 @@ export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="border-t border-line bg-white py-20 sm:py-24 lg:py-28">
       <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-4">
+        <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
           <p className="eyebrow">FAQ</p>
           <h2 id="faq-title" className="heading-lg mt-4 text-balance">
             <Rich text="Häufige *Fragen*" />
